@@ -1,0 +1,11 @@
+aws dynamodb ?
+aws dynamodb list-tables --profile loadmin
+aws dynamodb describe-table --table-name weatherstation_data --profile loadmin
+aws dynamodb delete-table --table-name weatherstation_data --profile loadmin
+aws dynamodb create-table --generate-cli-skeleton --profile loadmin
+aws dynamodb create-table --table-name weatherstation_data --profile loadmin \
+    --atttribute-defenition AttributeName=station_id,AttributeType=S AttributeName=dateandtime,AtttributeType=S \
+    --key-schema AttributeName=station_id,KeyType=HASH AttributeName=dateandtime,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
+aws dynamodb wait ttable-exists --table weatherstation_data --profile loadmin
+aws dynamodb update-table --table-name weatherstation_data --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 --profile loadmin
