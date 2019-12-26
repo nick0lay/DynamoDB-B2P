@@ -10,5 +10,6 @@ unzip awscliv2.zip
 sudo ./aws/install
 aws2 configure --profile LoAdmin
 
+Configure EC2 instance access
 chmod 400 test_aws_instance_key.pem
-ssh -i "test_aws_instance_key.pem" ec2-user@ec2-18-130-27-31.eu-west-2.compute.amazonaws.com
+ssh -i "key_name.pem" ec2-user@ec2_instance_domain
