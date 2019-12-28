@@ -9,3 +9,6 @@ aws dynamodb create-table --table-name weatherstation_data --profile loadmin \
     --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 aws dynamodb wait ttable-exists --table weatherstation_data --profile loadmin
 aws dynamodb update-table --table-name weatherstation_data --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 --profile loadmin
+
+Help
+aws dynamodb put-item help
