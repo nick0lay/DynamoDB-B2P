@@ -144,8 +144,8 @@ if __name__ == "__main__":
             break
     ## END WHILE LOOP
     for n in range(len(tests)):
-        print "INFO :: Starting load testing on students table, test set is "+str(tests)
-        print "INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n])
+        print("INFO :: Starting load testing on students table, test set is "+str(tests))
+        print("INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n]))
         with db_r.Table("lo_students").batch_writer() as batch:
             counter = get_counter(keyname='s_id', batchsize=tests[n])
             for c in tqdm.tqdm(range(tests[n])):

@@ -56,8 +56,8 @@ if __name__ == "__main__":
     RETRY_EXCEPTIONS = ('ProvisionedThroughputExceededException',
                     'ThrottlingException')
     for n in range(len(tests)):
-        print "INFO :: Starting load testing on students table, test set is "+str(tests)
-        print "INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n])
+        print("INFO :: Starting load testing on students table, test set is "+str(tests))
+        print("INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n]))
         with db_r.Table("lo_students").batch_writer() as batch:
             for c in tqdm.tqdm(range(1, tests[n]+1)):
                 ## find current s_id
@@ -102,6 +102,6 @@ if __name__ == "__main__":
                         sleep(2 ** retries)
                         retries +=1
 
-            print "INFO :: Test [%d] finished..." % n
+            print("INFO :: Test [%d] finished..." % n)
 
 #--

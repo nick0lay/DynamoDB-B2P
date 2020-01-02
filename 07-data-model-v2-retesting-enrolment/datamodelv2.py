@@ -112,24 +112,24 @@ def c_table (Table, t_config): # create dynamo DB tables
     drop the tables, and then rerun the function to create again.
     """
     try:
-        print "INFO :: Creating %s Table....." % Table
+        print("INFO :: Creating %s Table....." % Table)
         db_r.create_table(
             AttributeDefinitions = t_config[Table]['AttributeDefinitions'],
             TableName=Table,
             KeySchema = t_config[Table]['KeySchema'],
             ProvisionedThroughput=t_config[Table]['ProvisionedThroughput']
         )
-        print "INFO :: Waiting for completion..."
+        print("INFO :: Waiting for completion...")
         db_r.Table(Table).wait_until_exists()
     except botocore.exceptions.ClientError as e:
         if e.response['Error']['Code'] == "ResourceInUseException":
-            print "INFO :: Learning Online %s Table exists, deleting ...." % Table
+            print("INFO :: Learning Online %s Table exists, deleting ...." % Table)
             db_r.Table(Table).delete()
-            print "INFO :: Waiting for delete.."
+            print("INFO :: Waiting for delete..")
             db_r.Table(Table).wait_until_not_exists()
             c_table (Table, t_config)
         else:
-            print "Unknown Error"
+            print("Unknown Error")
 #------------------------------------------------------------------------------
 def p_table (Table, idbucket): # Populate Tables
     numofrows = ( 2500 if Table=='lo_students' \
@@ -140,7 +140,7 @@ def p_table (Table, idbucket): # Populate Tables
                 else 500 if Table=='lo_exams' \
                 else 0)
 
-    print "INFO :: Starting upload to [%s] table.." % Table
+    print("INFO :: Starting upload to [%s] table.." % Table)
     if Table in ["lo_students", "lo_teachers"]:
         with db_r.Table(Table).batch_writer() as batch:
             for c in tqdm.tqdm(range(1, numofrows+1)):
@@ -310,7 +310,7 @@ def get_counter(keyname): #given id pkey name, return id to use
     return id_to_use
 #------------------------------------------------------------------------------
 def u_table(Table, RCU, WCU): # Update table with RCU and WCU
-    print "INFO :: Updating Capacity on table [%s]" % Table
+    print("INFO :: Updating Capacity on table [%s]" % Table)
     db_r.Table(Table).update( \
         ProvisionedThroughput = { 'ReadCapacityUnits' : RCU, 'WriteCapacityUnits' : WCU}
     )
@@ -319,7 +319,7 @@ def u_table(Table, RCU, WCU): # Update table with RCU and WCU
         if db_r.Table(Table).table_status == 'ACTIVE':
             break
         time.sleep(30)
-        print "INFO :: Waiting for update on table [%s]" % Table
+        print("INFO :: Waiting for update on table [%s]" % Table)
 #------------------------------------------------------------------------------
 if __name__ == "__main__":
     s3bucket = ""
@@ -332,14 +332,14 @@ if __name__ == "__main__":
             break
     ## END WHILE LOOP
     ## If bucket exists, remove keys
-    print "INFO :: Deleting old files from S3 Bucket..."
+    print("INFO :: Deleting old files from S3 Bucket...")
     for object in s3_r.Bucket(s3bucket).objects.all():
         object.delete()
     ##
     """
     table_config structure contains the JSON options for the table creation.
     """
-    print "INFO :: Starting table creation and adding sample data..."
+    print("INFO :: Starting table creation and adding sample data...")
     table_config = d_table() # create table config.
     c_table(Table="lo_counters", t_config=table_config)
     p_table(Table="lo_counters", idbucket=s3bucket)
