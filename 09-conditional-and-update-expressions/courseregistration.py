@@ -33,7 +33,7 @@ bucketname = 'YOURBUCKETNAMEHERE'
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 if __name__ == "__main__":
-    print "INFO :: Course Registration Script"
+    print("INFO :: Course Registration Script")
     courseid = 0
     num_to_register=1
     while True:
@@ -85,7 +85,7 @@ if __name__ == "__main__":
                     raise
                 if err.response['Error']['Code'] == "ConditionalCheckFailedException":
                     if error_cond == True:
-                        print "ERROR :: Cant locate course instance with spaces"
+                        print("ERROR :: Cant locate course instance with spaces")
                         exit(1)
                     course_instance = course_instance+1
                     ci_id=str(courseid)+"#"+year+"#"+str(course_instance) # this moves it onto the next course instance as long as its an expression fail.

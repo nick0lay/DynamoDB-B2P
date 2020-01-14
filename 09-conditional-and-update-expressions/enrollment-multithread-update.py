@@ -140,7 +140,7 @@ if __name__ == "__main__":
     s3bucket = ""
     while True:
         if bucketname != 'YOURBUCKETNAMEHERE':
-            print "INFO :: BucketName set within script...no need to prompt for explicit name...."
+            print("INFO :: BucketName set within script...no need to prompt for explicit name....")
             break
         if py3:
             s3bucket = input('Enter the name of the S3 bucket created by IDBucket.json: ')
@@ -155,12 +155,12 @@ if __name__ == "__main__":
 
 
     for n in range(len(tests)):
-        print "INFO :: Starting load testing on students table, test set is "+str(tests)
-        print "INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n])
+        print("INFO :: Starting load testing on students table, test set is "+str(tests))
+        print("INFO :: Starting enrollment test [%d] - %d students" % (n+1, tests[n]))
 
-        processes = [mp.Process(target=worker_process, args=(tests[n]/num_of_threads, x, s3bucket)) for x in range(num_of_threads)]
+        processes = [mp.Process(target=worker_process, args=(int(tests[n]/num_of_threads), x, s3bucket)) for x in range(num_of_threads)]
         for p in processes:
             p.start()
         for p in processes:
             p.join()
-        print "INFO :: FINISHED TEST [%d]" % (n+1)
+        print("INFO :: FINISHED TEST [%d]" % (n+1))
