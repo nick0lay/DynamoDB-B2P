@@ -60,14 +60,14 @@ if __name__ == "__main__":
         capacityconsumed = capacityconsumed + response['ConsumedCapacity']['CapacityUnits']
         data.extend(response['Items'])
 
-    print "Course [%s] has [%i] instances" % (course_id, len(data))
+    print("Course [%s] has [%i] instances" % (course_id, len(data)))
     for i in range(len(data)):
-        print "Course Instance [%s], has [%d] students" % (data[i]['ci_id'], len(data[i]['students']))
+        print("Course Instance [%s], has [%d] students" % (data[i]['ci_id'], len(data[i]['students'])))
 
-    print "Operation required %.1f capacity units to complete" % capacityconsumed
+    print("Operation required %.1f capacity units to complete" % capacityconsumed)
 
 
-    print "Press Q to quit... or any other key to list students for course ID [%s] " % course_id
+    print("Press Q to quit... or any other key to list students for course ID [%s] " % course_id)
 
     if py3:
         entry = str(input()).lower()
@@ -78,4 +78,4 @@ if __name__ == "__main__":
 
     for i in range(len(data)):
         for s, student in enumerate(data[i]['students']):
-            print "[%i]\t[%s]\tStudent [%s]" % (s, data[i]['ci_id'], student)
+            print("[%i]\t[%s]\tStudent [%s]" % (s, data[i]['ci_id'], student))

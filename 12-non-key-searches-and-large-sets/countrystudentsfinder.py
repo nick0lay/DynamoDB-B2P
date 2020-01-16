@@ -57,10 +57,10 @@ if __name__ == "__main__":
         scannedcount = scannedcount + response['ScannedCount']
         data.extend(response['Items'])
 
-    print "Located [%i] students in [%s]" % (len(data), country)
-    print "Operation required %i capacity units to complete" % capacityconsumed
-    print "Total number of items scanned [%i]" % scannedcount
-    print "Press Q to quit... or any other key to list students in %s" % country
+    print("Located [%i] students in [%s]" % (len(data), country))
+    print("Operation required %i capacity units to complete" % capacityconsumed)
+    print("Total number of items scanned [%i]" % scannedcount)
+    print("Press Q to quit... or any other key to list students in %s" % country)
 
     if py3:
         entry = str(input()).lower()
@@ -68,8 +68,8 @@ if __name__ == "__main__":
         entry = str(raw_input()).lower()
     if entry == 'q':
         exit(0)
-    print "REC NUM\tFIRSTNAME\t\tSURNAME\t\tDOB\tSEX\tIDNUM\tCITY\t\tEmail"
+    print("REC NUM\tFIRSTNAME\t\tSURNAME\t\tDOB\tSEX\tIDNUM\tCITY\t\tEmail")
     for i, s_instance in enumerate(data):
-        print "RECORD %d\t%s\t\t%s\t\t%s\t%s\t%s\t%s\t\t%s" % (i+1, \
+        print("RECORD %d\t%s\t\t%s\t\t%s\t%s\t%s\t%s\t\t%s" % (i+1, \
         s_instance['first_name'], s_instance['last_name'], s_instance['birthdate'], s_instance['sex'],\
-        s_instance['govid'], s_instance['city'], s_instance['email'])
+        s_instance['govid'], s_instance['city'], s_instance['email']))

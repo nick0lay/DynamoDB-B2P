@@ -62,10 +62,10 @@ if __name__ == "__main__":
         scannedcount = scannedcount + response['ScannedCount']
         data.extend(response['Items'])
 
-    print "Student [%s] is registered to %d course instances" % (student_id, len(data))
-    print "Operation required %i capacity units to complete" % capacityconsumed
-    print "Total number of items scanned [%i]" % scannedcount
-    print "Press Q to quit... or any other key to list course instances student [%s] is registered for" % student_id
+    print("Student [%s] is registered to %d course instances" % (student_id, len(data)))
+    print("Operation required %i capacity units to complete" % capacityconsumed)
+    print("Total number of items scanned [%i]" % scannedcount)
+    print("Press Q to quit... or any other key to list course instances student [%s] is registered for" % student_id)
 
     if py3:
         entry = str(input()).lower()
@@ -75,4 +75,4 @@ if __name__ == "__main__":
         exit(0)
 
     for i, c_instance in enumerate(data):
-        print "[%d]\t[%s]" % (i+1, c_instance['ci_id'])
+        print("[%d]\t[%s]" % (i+1, c_instance['ci_id']))
