@@ -57,12 +57,12 @@ if __name__ == "__main__":
 
     finishtime=time.time()
     timetocomplete = finishtime - starttime
-    print "Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
-                time.ctime(finishtime), timetocomplete)
-    print "Operation required %i capacity units to complete" % capacityconsumed
-    print "Total number of items scanned [%i]" % scannedcount
-    print "Located [%i] results voided" % (len(data))
-    print "Press Q to quit... or any other key to list voided exams "
+    print("Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
+                time.ctime(finishtime), timetocomplete))
+    print("Operation required %i capacity units to complete" % capacityconsumed)
+    print("Total number of items scanned [%i]" % scannedcount)
+    print("Located [%i] results voided" % (len(data)))
+    print("Press Q to quit... or any other key to list voided exams ")
 
     if py3:
         entry = str(input()).lower()
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         entry = str(raw_input()).lower()
     if entry == 'q':
         exit(0)
-    print "#\tE_ID\tStudentID\tCourseInstaceID"
+    print("#\tE_ID\tStudentID\tCourseInstaceID")
     for i, s_instance in enumerate(data):
-        print "%d\t%s\t%s\t%s" % (i+1, \
-        s_instance['id'], s_instance['s_id'], s_instance['ci_id'])
+        print("%d\t%s\t%s\t%s" % (i+1, \
+        s_instance['id'], s_instance['s_id'], s_instance['ci_id']))

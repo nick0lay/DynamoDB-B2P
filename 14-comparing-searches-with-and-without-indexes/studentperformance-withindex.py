@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
     finishtime=time.time()
     timetocomplete = finishtime - starttime
-    print "Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
-                time.ctime(finishtime), timetocomplete)
-    print "Operation required %.1f capacity units to complete" % capacityconsumed
-    print "Average Grade for student [%s] is %.2f percent over %i exams " % (student_id, average, int(len(data)))
+    print("Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
+                time.ctime(finishtime), timetocomplete))
+    print("Operation required %.1f capacity units to complete" % capacityconsumed)
+    print("Average Grade for student [%s] is %.2f percent over %i exams " % (student_id, average, int(len(data))))

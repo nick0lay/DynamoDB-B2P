@@ -64,12 +64,12 @@ if __name__ == "__main__":
 
     finishtime=time.time()
     timetocomplete = finishtime - starttime
-    print "Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
-                time.ctime(finishtime), timetocomplete)
-    print "Operation required %i capacity units to complete" % capacityconsumed
-    print "Total number of items scanned [%i]" % scannedcount
-    print "Located [%i] students in [%s]" % (len(data), country)
-    print "Press Q to quit... or any other key to list students in %s" % country
+    print("Script Started on %s, finished on %s, took %0.2fs to complete without indexes" % (time.ctime(starttime),\
+                time.ctime(finishtime), timetocomplete))
+    print("Operation required %i capacity units to complete" % capacityconsumed)
+    print("Total number of items scanned [%i]" % scannedcount)
+    print("Located [%i] students in [%s]" % (len(data), country))
+    print("Press Q to quit... or any other key to list students in %s" % country)
 
     if py3:
         entry = str(input()).lower()
@@ -77,8 +77,8 @@ if __name__ == "__main__":
         entry = str(raw_input()).lower()
     if entry == 'q':
         exit(0)
-    print "#\tS_ID\t\t\t\t\tFIRSTNAME\tSURNAME\t\tCOUNTRY\tCITY\t\STATE\t\tEmail"
+    print("#\tS_ID\t\t\t\t\tFIRSTNAME\tSURNAME\t\tCOUNTRY\tCITY\t\STATE\t\tEmail")
     for i, s_instance in enumerate(data):
-        print "%d\t%s\t%s\t\t%s\t\t%s\t%s\t%s\t\t%s" % (i+1, \
+        print("%d\t%s\t%s\t\t%s\t\t%s\t%s\t%s\t\t%s" % (i+1, \
         s_instance['id'], s_instance['first_name'], s_instance['last_name'], s_instance['country'],\
-        s_instance['city'], s_instance['state'], s_instance['email'])
+        s_instance['city'], s_instance['state'], s_instance['email']))
