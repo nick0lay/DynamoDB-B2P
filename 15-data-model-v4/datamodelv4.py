@@ -64,12 +64,12 @@ def c_table(TableName, **kwargs): # handles the creation of a tabale with error 
                                 # kwargs optionally passes in BOTO3 sessions for multithreading
     try:
         db_r.create_table(**t_conf(TableName))
-        print "INFO :: Waiting for Table [%s] to complete..." % TableName
+        print("INFO :: Waiting for Table [%s] to complete..." % TableName)
         db_r.Table(TableName).wait_until_exists()
     except botocore.exceptions.ClientError as e:
         if e.response['Error']['Code'] == "ResourceInUseException":
             db_r.Table(TableName).delete()
-            print "INFO :: Learning Online %s Table exists, waiting for delete ...." % TableName
+            print("INFO :: Learning Online %s Table exists, waiting for delete ...." % TableName)
             db_r.Table(TableName).wait_until_not_exists()
             c_table(TableName)
         else:
@@ -431,7 +431,7 @@ def item_gen(Type, uuid, uuiddict, Idbucket): # Generate ITEM for type
     return i # retrurn the completed item.
 #------------------------------------------------------------------------------
 def u_table(Table, RCU, WCU): # Update table with RCU and WCU
-    print "INFO :: Updating Capacity on table [%s]" % Table
+    print("INFO :: Updating Capacity on table [%s]" % Table)
     # create a dict for storing new intended config
     newconf={}
     # retrieve old config from t_conf function
@@ -449,7 +449,7 @@ def u_table(Table, RCU, WCU): # Update table with RCU and WCU
                 "ProvisionedThroughput" : {"ReadCapacityUnits" : RCU, "WriteCapacityUnits" : WCU} \
                 }})
     except:
-        print "INFO :: Now GSI found in table [%s]- unchanged" % Table
+        print("INFO :: Now GSI found in table [%s]- unchanged" % Table)
 
     # update table and wait for completion
     db_r.Table(Table).update(**newconf)
@@ -458,7 +458,7 @@ def u_table(Table, RCU, WCU): # Update table with RCU and WCU
         if db_r.Table(Table).table_status == 'ACTIVE':
             break
         time.sleep(30)
-        print "INFO :: Waiting for update on table [%s]" % Table
+        print("INFO :: Waiting for update on table [%s]" % Table)
 #------------------------------------------------------------------------------
 def uuidpool(num, tablename): # generate 'num' uuid's, return array
     pool=[]
@@ -467,7 +467,7 @@ def uuidpool(num, tablename): # generate 'num' uuid's, return array
     return pool
 #------------------------------------------------------------------------------
 def addstream(Table, StreamConfig):
-    print "INFO :: Creating Dynamo DB streams on table [%s]" % Table
+    print("INFO :: Creating Dynamo DB streams on table [%s]" % Table)
     db_r.Table(Table).update(**StreamConfig)
 #------------------------------------------------------------------------------
 if __name__ == "__main__":
@@ -487,7 +487,7 @@ if __name__ == "__main__":
     s3_prepare(s3bucket) ## upload 5 id pics for students, 5 for teachers, and 1 exam
 
 
-    print "INFO :: Creating UUID Pools"
+    print("INFO :: Creating UUID Pools")
     uuid_dict={}
     uuid_dict['lo_students'] = uuidpool(num=student_count, tablename="lo_students")
     uuid_dict['lo_teachers'] = uuidpool(num=teacher_count, tablename="lo_teachers")
@@ -518,4 +518,4 @@ if __name__ == "__main__":
     addstream("lo_exams", conf)
     addstream("lo_attendance", conf)
     addstream("lo_bookings", conf)
-    print "INFO :: V4 Data load completed..."
+    print("INFO :: V4 Data load completed...")

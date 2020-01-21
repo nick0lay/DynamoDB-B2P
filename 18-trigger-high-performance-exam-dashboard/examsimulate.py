@@ -57,7 +57,7 @@ def exam_update(uuidkey, bookingkey, location, stage):
             )
 
 if __name__ == "__main__":
-    print "INFO :: Exam simulation"
+    print("INFO :: Exam simulation")
     pool=[]
     while True:
         if py3:
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     pool=uuidpool(25, 'lo_exams')
     pool2=uuidpool(3, 'b_id')
 
-    print "INFO :: Adding 3 dummy exam entries with location %s, and 1 of 3 booking ID's" % location
+    print("INFO :: Adding 3 dummy exam entries with location %s, and 1 of 3 booking ID's" % location)
     for x in range(3):
         db_r.Table('lo_exams').update_item(Key={'id' : str(uuid.uuid4())},
             UpdateExpression='set b_id=:b, ci_id=:ci, comments=:c, dateandtimestarted=:stime, #L=:l, m_id=:m, s_id=:s, entrancepic=:p',
